@@ -47,7 +47,7 @@ class CustomDialog : View.OnClickListener {
     ) {
 
         this.activity = activity
-        
+
         dialog = Dialog(activity, R.style.Dialog_No_Border)
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog?.setCancelable(isCancelable)
