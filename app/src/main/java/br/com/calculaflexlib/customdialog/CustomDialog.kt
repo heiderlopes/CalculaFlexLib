@@ -2,15 +2,14 @@ package br.com.calculaflexlib.customdialog
 
 import android.app.Activity
 import android.app.Dialog
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.method.LinkMovementMethod
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import br.com.calculaflexlib.R
 import br.com.calculaflexlib.extensions.fromHtml
 
@@ -26,7 +25,7 @@ class CustomDialog : View.OnClickListener {
 
     fun showDialog(
         activity: Activity,
-        drawable: Drawable,
+        icon: Bitmap,
         title: String?,
         msg: String?,
         buttonPrimaryText: String?,
@@ -35,7 +34,7 @@ class CustomDialog : View.OnClickListener {
     ) {
 
         createDialog(
-            activity, drawable, title, msg, buttonPrimaryText,
+            activity, icon, title, msg, buttonPrimaryText,
             primaryClickListener, isCancelable
         )
     }
@@ -65,7 +64,7 @@ class CustomDialog : View.OnClickListener {
 
     private fun createDialog(
         activity: Activity,
-        drawable: Drawable,
+        icon: Bitmap,
         title: String?,
         msg: String?,
         buttonPrimaryText: String?,
@@ -84,7 +83,7 @@ class CustomDialog : View.OnClickListener {
         tvAlertDialogMessage = dialog?.findViewById(R.id.tvAlertDialogMessage) as TextView
         btAlertDialogConfirm = dialog?.findViewById(R.id.btAlertDialogConfirm) as TextView
 
-        ivAlertDialogImage.setImageDrawable(drawable)
+        ivAlertDialogImage.setImageBitmap(icon)
 
         tvAlertDialogTitle.fromHtml(title)
         tvAlertDialogTitle.movementMethod = LinkMovementMethod.getInstance()
@@ -144,8 +143,8 @@ class CustomDialog : View.OnClickListener {
         }
     }
 
-    fun isShowing(): Boolean {
+    fun isShowing(): Boolean? {
         if (dialog == null) return false
-        return dialog!!.isShowing
+        return dialog?.isShowing
     }
 }
