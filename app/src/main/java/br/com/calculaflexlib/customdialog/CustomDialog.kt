@@ -113,7 +113,7 @@ class CustomDialog : View.OnClickListener {
         }
     }
 
-    private fun dismissDialog() {
+    fun dismissDialog() {
         if (dialog != null) {
             if (!isActivityFinish() && dialog!!.isShowing) {
                 dialog?.dismiss()
