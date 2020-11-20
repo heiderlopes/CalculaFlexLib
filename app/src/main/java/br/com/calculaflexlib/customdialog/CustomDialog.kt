@@ -11,6 +11,7 @@ import android.text.method.LinkMovementMethod
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import br.com.calculaflexlib.R
 import br.com.calculaflexlib.extensions.fromHtml
 
@@ -85,8 +86,8 @@ class CustomDialog : View.OnClickListener {
         btAlertDialogConfirm = dialog?.findViewById(R.id.btAlertDialogConfirm) as TextView
 
         resId?.let {
-            val bm = BitmapFactory.decodeResource(activity.resources, it);
-            ivAlertDialogImage.setImageBitmap(bm)
+            val bm = ResourcesCompat.getDrawable(activity.resources, it, null)
+            ivAlertDialogImage.setImageDrawable(bm)
         }
 
         tvAlertDialogTitle.fromHtml(title)
