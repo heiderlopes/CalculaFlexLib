@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.method.LinkMovementMethod
 import android.view.*
@@ -25,7 +26,7 @@ class CustomDialog : View.OnClickListener {
 
     fun showDialog(
         activity: Activity,
-        resIconId: Int,
+        drawable: Drawable,
         title: String?,
         msg: String?,
         buttonPrimaryText: String?,
@@ -34,7 +35,7 @@ class CustomDialog : View.OnClickListener {
     ) {
 
         createDialog(
-            activity, resIconId, title, msg, buttonPrimaryText,
+            activity, drawable, title, msg, buttonPrimaryText,
             primaryClickListener, isCancelable
         )
     }
@@ -45,6 +46,8 @@ class CustomDialog : View.OnClickListener {
         isCancelable: Boolean
     ) {
 
+        this.activity = activity
+        
         dialog = Dialog(activity, R.style.Dialog_No_Border)
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog?.setCancelable(isCancelable)
@@ -63,7 +66,7 @@ class CustomDialog : View.OnClickListener {
 
     private fun createDialog(
         activity: Activity,
-        resIconId: Int,
+        drawable: Drawable,
         title: String?,
         msg: String?,
         buttonPrimaryText: String?,
@@ -82,7 +85,7 @@ class CustomDialog : View.OnClickListener {
         tvAlertDialogMessage = dialog?.findViewById(R.id.tvAlertDialogMessage) as TextView
         btAlertDialogConfirm = dialog?.findViewById(R.id.btAlertDialogConfirm) as TextView
 
-        ivAlertDialogImage.setImageDrawable(ContextCompat.getDrawable(activity, resIconId))
+        ivAlertDialogImage.setImageDrawable(drawable)
 
         tvAlertDialogTitle.fromHtml(title)
         tvAlertDialogTitle.movementMethod = LinkMovementMethod.getInstance()
