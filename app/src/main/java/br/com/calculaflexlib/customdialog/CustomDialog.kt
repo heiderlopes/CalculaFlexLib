@@ -9,6 +9,7 @@ import android.text.method.LinkMovementMethod
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import br.com.calculaflexlib.R
 import br.com.calculaflexlib.extensions.fromHtml
 
@@ -81,6 +82,7 @@ class CustomDialog : View.OnClickListener {
         tvAlertDialogMessage = dialog?.findViewById(R.id.tvAlertDialogMessage) as TextView
         btAlertDialogConfirm = dialog?.findViewById(R.id.btAlertDialogConfirm) as TextView
 
+        ivAlertDialogImage.setImageDrawable(ContextCompat.getDrawable(activity, resIconId))
 
         tvAlertDialogTitle.fromHtml(title)
         tvAlertDialogTitle.movementMethod = LinkMovementMethod.getInstance()
