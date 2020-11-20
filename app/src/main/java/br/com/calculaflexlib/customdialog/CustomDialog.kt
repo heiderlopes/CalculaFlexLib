@@ -3,6 +3,7 @@ package br.com.calculaflexlib.customdialog
 import android.app.Activity
 import android.app.Dialog
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
@@ -83,7 +84,10 @@ class CustomDialog : View.OnClickListener {
         tvAlertDialogMessage = dialog?.findViewById(R.id.tvAlertDialogMessage) as TextView
         btAlertDialogConfirm = dialog?.findViewById(R.id.btAlertDialogConfirm) as TextView
 
-        resId?.let { ivAlertDialogImage.setImageResource(it) }
+        resId?.let {
+            val bm = BitmapFactory.decodeResource(activity.resources, it);
+            ivAlertDialogImage.setImageBitmap(bm)
+        }
 
         tvAlertDialogTitle.fromHtml(title)
         tvAlertDialogTitle.movementMethod = LinkMovementMethod.getInstance()
