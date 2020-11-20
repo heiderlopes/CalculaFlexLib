@@ -25,7 +25,7 @@ class CustomDialog : View.OnClickListener {
 
     fun showDialog(
         activity: Activity,
-        icon: Bitmap,
+        resId: Int?,
         title: String?,
         msg: String?,
         buttonPrimaryText: String?,
@@ -34,7 +34,7 @@ class CustomDialog : View.OnClickListener {
     ) {
 
         createDialog(
-            activity, icon, title, msg, buttonPrimaryText,
+            activity, resId, title, msg, buttonPrimaryText,
             primaryClickListener, isCancelable
         )
     }
@@ -64,7 +64,7 @@ class CustomDialog : View.OnClickListener {
 
     private fun createDialog(
         activity: Activity,
-        icon: Bitmap,
+        resId: Int?,
         title: String?,
         msg: String?,
         buttonPrimaryText: String?,
@@ -83,7 +83,7 @@ class CustomDialog : View.OnClickListener {
         tvAlertDialogMessage = dialog?.findViewById(R.id.tvAlertDialogMessage) as TextView
         btAlertDialogConfirm = dialog?.findViewById(R.id.btAlertDialogConfirm) as TextView
 
-        ivAlertDialogImage.setImageBitmap(icon)
+        resId?.let { ivAlertDialogImage.setImageResource(it) }
 
         tvAlertDialogTitle.fromHtml(title)
         tvAlertDialogTitle.movementMethod = LinkMovementMethod.getInstance()
